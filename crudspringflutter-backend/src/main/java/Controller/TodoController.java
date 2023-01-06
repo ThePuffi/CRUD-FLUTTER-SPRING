@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import Dto.TodoDto;
+import Service.TodoService;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -21,23 +23,42 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TodoController {
 
+    private final TodoService service;
+
     @PostMapping("/create")
     public ResponseEntity<TodoDto> create(@RequestBody TodoDto dto) {
-        return null;
+        try {
+            return new ResponseEntity<>(service.addTodo(dto), HttpStatus.CREATED);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public ResponseEntity<List<TodoDto>> getAll() {
-        return null;
+        try{
+            return new ResponseEntity<>(service.getAllTodos(), HttpStatus.OK);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public ResponseEntity<TodoDto> update(@RequestBody TodoDto dto) {
-        return null;
+        try{
+            return new ResponseEntity<>(service.updateTodo(dto), HttpStatus.OK);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<TodoDto> delete(@PathVariable String id) {
-        return null;
+        try{
+            service.deleteTodo(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

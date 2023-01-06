@@ -8,10 +8,15 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author Erik Meinardus
  */
 
+@Getter
+@Setter
 @Entity
 public class TodoEntity {
 
