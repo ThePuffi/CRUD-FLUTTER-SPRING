@@ -14,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TodoService {
 
-    public TodoDto addTodo() {
+    public TodoDto addTodo(TodoDto todoDto) {
+        if(todoDto.getTitle().isEmpty() || todoDto.getContent().isEmpty()) {
+            throw new IllegalArgumentException("Title and Content are required!");
+        }
         return null;
     }
 
