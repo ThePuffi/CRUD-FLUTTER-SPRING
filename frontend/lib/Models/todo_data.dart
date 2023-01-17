@@ -12,7 +12,11 @@ class TodoData extends ChangeNotifier {
   }
 
   void updateTodo(Todo todo) {
-    Service.updateTodo(todo);
+    Service.updateTodo(
+      id: todo.id,
+      title: todo.title,
+      content: todo.content,
+    );
     notifyListeners();
   }
 

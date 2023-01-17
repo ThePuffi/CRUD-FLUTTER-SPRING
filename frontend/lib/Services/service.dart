@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:frontend/Models/todo.dart';
-
 import 'globals.dart';
 
 class Service {
@@ -38,14 +36,19 @@ class Service {
     return todos;
   }
 
-  static Future<http.Response> updateTodo(Todo todo) async {
+  static Future<Todo> updateTodo(
+      {required String id,
+      required String title,
+      required String content}) async {
+    Map data = {"id": id, "title": title, "content": content};
+    var body = json.encode(data);
     var url = Uri.parse('$baseURL/update');
-    http.Response response = await http.put(
-      url,
-      headers: headers,
-    );
-    print(response.body);
-    return response;
+    http.Response response = await http.put(url, headers: headers, body: body);
+
+    Map responseMap = jsonDecode(response.body);
+    Todo todo = Todo.fromMap(responseMap);
+
+    return todo;
   }
 
   static Future<http.Response> deleteTodo(String id) async {

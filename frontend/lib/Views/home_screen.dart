@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Todo Tasks (${Provider.of<TodoData>(context).todos.length})',
               ),
               centerTitle: true,
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.blue,
             ),
             body: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.blue,
               child: const Icon(
                 Icons.add,
               ),
