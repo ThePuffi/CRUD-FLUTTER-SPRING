@@ -20,7 +20,6 @@ class _UpdateTodoScreenState extends State<UpdateTodoScreen> {
     super.initState();
 
     _todo = widget.todo;
-    print(_todo);
   }
 
   @override
