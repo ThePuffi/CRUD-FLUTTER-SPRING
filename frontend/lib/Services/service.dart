@@ -26,7 +26,6 @@ class Service {
       url,
       headers: headers,
     );
-    print(response.body);
     List responseList = jsonDecode(response.body);
     List<Todo> todos = [];
     for (Map todoMap in responseList) {
@@ -57,7 +56,6 @@ class Service {
       url,
       headers: headers,
     );
-    print(response.body);
     return response;
   }
 }
