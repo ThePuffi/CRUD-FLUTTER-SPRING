@@ -18,13 +18,13 @@ class TodoTile extends StatelessWidget {
             title: Text(
               todo.title,
             ),
+            subtitle: Text(todo.content),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () {
-                    print(todo);
                     showModalBottomSheet(
                         context: context,
                         builder: (context) {
